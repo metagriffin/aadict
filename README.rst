@@ -42,11 +42,17 @@ Use:
   d2 = aadict(x='y').update(d).omit('zig')
   assert d2.x == 'y' and d2.foo == 'bar' and d2.zig is None
 
+  # prefix extraction
+  d = {'foo.zig': 'bar', 'foo.zag': 87, 'zig': 'zog'}
+  assert pick(d, prefix='foo.')        == {'zig': 'bar', 'zag': 87}
+  assert pick(d, 'zig', prefix='foo.') == {'zig': 'bar'}
+
 
 Details
 =======
 
 The aadict module provides the following functionality:
+
 
 aadict
 ------
@@ -171,3 +177,4 @@ Identical to the `pick` function, but returns the compliment. Example:
   d2 = omit(d, 'zig', prefix='foo.', dict=aadict)
   assert d2 == {'zag': 87}
   assert d2.zag == 87
+
