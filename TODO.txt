@@ -1,0 +1,6 @@
+* pick and omit don't treat an empty selection correctly (IMHO). specifically:
+  * pick(d) should probably return nothing
+  * pick(d, prefix=...) should return only those prefixes
+  * omit(d) should return d with all keys copied
+  * omit(d, prefix=...) should return d with all keys that have the specified
+    prefix removed...
