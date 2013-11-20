@@ -21,38 +21,19 @@
 
 import unittest, pickle
 
-from .aadict import aadict
-from .helpers import pick, omit
+from aadict import aadict
 
 #------------------------------------------------------------------------------
 class TestAadict(unittest.TestCase):
 
   #----------------------------------------------------------------------------
-  def test_aadict_base(self):
+  def test_base(self):
     d = aadict(foo='bar', zig=87)
     self.assertEqual(d.foo, 'bar')
     self.assertEqual(d['foo'], 'bar')
 
   #----------------------------------------------------------------------------
-  def test_helpers_pick(self):
-    d = aadict(foo='bar', zig=87)
-    self.assertEqual(pick(d, 'foo'), {'foo': 'bar'})
-    self.assertEqual(pick(d, 'foo', dict=aadict), {'foo': 'bar'})
-    self.assertEqual(d.pick('foo'), {'foo': 'bar'})
-    self.assertIsInstance(pick(d, 'foo'), dict)
-    self.assertNotIsInstance(pick(d, 'foo'), aadict)
-    self.assertIsInstance(pick(d, 'foo', dict=aadict), aadict)
-    self.assertIsInstance(d.pick('foo'), dict)
-    self.assertIsInstance(d.pick('foo'), aadict)
-
-  #----------------------------------------------------------------------------
-  def test_helpers_omit(self):
-    d = aadict(foo='bar', zig=87)
-    self.assertEqual(omit(d, 'foo'), {'zig': 87})
-    self.assertEqual(d.omit('foo'), {'zig': 87})
-
-  #----------------------------------------------------------------------------
-  def test_aadict_chaining(self):
+  def test_chaining(self):
     d = aadict(foo='bar', zig=87)
     d2 = aadict(x='y').update(d).omit('zig')
     self.assertEqual(d2.x, 'y')
@@ -60,7 +41,7 @@ class TestAadict(unittest.TestCase):
     self.assertIsNone(d2.zig)
 
   #----------------------------------------------------------------------------
-  def test_aadict_convert(self):
+  def test_convert(self):
     d = aadict.d2ar(dict(foo=dict(bar='zig')))
     self.assertEqual(d.foo.bar, 'zig')
     d = aadict.d2a(dict(foo=dict(bar='zig')))
@@ -69,7 +50,7 @@ class TestAadict(unittest.TestCase):
       self.fail('AttributeError should have been raised')
 
   #----------------------------------------------------------------------------
-  def test_aadict_pickle(self):
+  def test_pickle(self):
     d = aadict(foo='bar', zig=87)
     d2 = pickle.loads(pickle.dumps(d))
     self.assertTrue(isinstance(d2, aadict))
