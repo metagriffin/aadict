@@ -41,6 +41,8 @@ class aadict(dict):
     if key in self:
       del self[key]
     return self
+  def __dir__(self):
+    return dir(aadict) + self.keys()
   def update(self, *args, **kw):
     args = [e for e in args if e]
     dict.update(self, *args, **kw)

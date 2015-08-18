@@ -58,6 +58,19 @@ class TestAadict(unittest.TestCase):
     self.assertEqual(d2['foo'], 'bar')
     self.assertEqual(d2.foo, 'bar')
 
+  #----------------------------------------------------------------------------
+  def test_dir(self):
+    d1 = dict()
+    d2 = aadict(foo='bar', zig=87)
+    ignore = set(['__weakref__', '__module__', '__dict2aadict__', '__dict__'])
+    self.assertEqual(
+      set(sorted(dir(d2))) - ignore,
+      set(sorted(dir(d1) + [
+        '__getattr__', '__setattr__', '__delattr__', '__dir__',
+        'pick', 'omit', 'd2a', 'd2ar',
+        'foo', 'zig',
+        ])) - ignore)
+
 #------------------------------------------------------------------------------
 # end of $Id$
 #------------------------------------------------------------------------------
