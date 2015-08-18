@@ -38,6 +38,7 @@ test_dependencies = [
 ]
 
 dependencies = [
+  'six                  >= 1.6.0',
 ]
 
 entrypoints = {}

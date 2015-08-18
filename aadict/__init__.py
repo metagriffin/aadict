@@ -19,6 +19,8 @@
 # along with this program. If not, see http://www.gnu.org/licenses/.
 #------------------------------------------------------------------------------
 
+import six
+
 #------------------------------------------------------------------------------
 class aadict(dict):
   '''
@@ -48,9 +50,9 @@ class aadict(dict):
     dict.update(self, *args, **kw)
     return self
   def pick(self, *args):
-    return aadict({k: v for k, v in self.iteritems() if k in args})
+    return aadict({k: v for k, v in six.iteritems(self) if k in args})
   def omit(self, *args):
-    return aadict({k: v for k, v in self.iteritems() if k not in args})
+    return aadict({k: v for k, v in six.iteritems(self) if k not in args})
   @staticmethod
   def __dict2aadict__(subject, recursive=False):
     if isinstance(subject, list):
