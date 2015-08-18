@@ -42,7 +42,7 @@ class aadict(dict):
       del self[key]
     return self
   def __dir__(self):
-    return dir(aadict) + self.keys()
+    return dir(aadict) + list(self.keys())
   def update(self, *args, **kw):
     args = [e for e in args if e]
     dict.update(self, *args, **kw)
