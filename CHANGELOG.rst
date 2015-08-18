@@ -3,6 +3,13 @@ ChangeLog
 =========
 
 
+v0.2.2
+======
+
+* Removed `distribute` dependency
+* Added better `dir()` support
+
+
 v0.2.1
 ======
 
