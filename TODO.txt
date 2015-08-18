@@ -4,3 +4,6 @@
   * omit(d) should return d with all keys copied
   * omit(d, prefix=...) should return d with all keys that have the specified
     prefix removed...
+
+* perhaps use `vars()` during aadict() construction so that it can
+  handle argparse.Namespace objects ? ...
