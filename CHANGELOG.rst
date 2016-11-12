@@ -3,6 +3,12 @@ ChangeLog
 =========
 
 
+v0.2.3
+======
+
+* Made `clear()` method chainable
+
+
 v0.2.2
 ======
 
