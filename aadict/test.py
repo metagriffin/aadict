@@ -33,12 +33,17 @@ class TestAadict(unittest.TestCase):
     self.assertEqual(d['foo'], 'bar')
 
   #----------------------------------------------------------------------------
-  def test_chaining(self):
+  def test_chaining_update(self):
     d = aadict(foo='bar', zig=87)
     d2 = aadict(x='y').update(d).omit('zig')
     self.assertEqual(d2.x, 'y')
     self.assertEqual(d2.foo, 'bar')
     self.assertIsNone(d2.zig)
+
+  #----------------------------------------------------------------------------
+  def test_chaining_clear(self):
+    d = aadict(foo='bar', zig=87).clear().update(zag='zug')
+    self.assertEqual(d, {'zag': 'zug'})
 
   #----------------------------------------------------------------------------
   def test_convert(self):
@@ -71,6 +76,15 @@ class TestAadict(unittest.TestCase):
         'foo', 'zig',
         ])) - ignore)
 
+  #----------------------------------------------------------------------------
+  def test_ctor_cloneupdate(self):
+    d1 = aadict(foo='bar', zig=87)
+    d2 = aadict(d1, zig=99, zag='zog')
+    self.assertEqual(d1, dict(foo='bar', zig=87))
+    self.assertEqual(d2, dict(foo='bar', zig=99, zag='zog'))
+
+
 #------------------------------------------------------------------------------
 # end of $Id$
+# $ChangeLog$
 #------------------------------------------------------------------------------

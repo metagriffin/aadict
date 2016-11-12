@@ -49,6 +49,9 @@ class aadict(dict):
     args = [e for e in args if e]
     dict.update(self, *args, **kw)
     return self
+  def clear(self, *args, **kw):
+    dict.clear(self)
+    return self
   def pick(self, *args):
     return aadict({k: v for k, v in six.iteritems(self) if k in args})
   def omit(self, *args):
